@@ -36,7 +36,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          load: true
+          load: false
           platforms: linux/amd64
           tags: ${{ env.OCI_URL }}/ocm-cli:${{ env.VERSION }}-linux-arm64
           build-args: |
@@ -47,7 +47,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          load: true
+          load: false
           platforms: linux/arm64
           tags: ${{ env.OCI_URL }}/ocm-cli:${{ env.VERSION }}-linux-arm64
           build-args: |
