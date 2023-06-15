@@ -55,7 +55,7 @@ jobs:
             OCM_PLATFORM=Linux_arm64
       - name: Create multi-platform image
         run: |
-          docker buildx imagetools create ${{ env.OCI_URL }}/ocm-cli:${{ env.VERSION }}-linux-arm64 ${{ env.OCI_URL }}/ocm-cli:${{ env.VERSION }}-linux-arm64 -t ${{ env.OCI_URL }}/ocm-cli:${{ env.VERSION }}
+          docker buildx imagetools create ${{ env.OCI_URL }}/ocm-cli:${{ env.VERSION }}-linux-amd64 ${{ env.OCI_URL }}/ocm-cli:${{ env.VERSION }}-linux-arm64 -t ${{ env.OCI_URL }}/ocm-cli:${{ env.VERSION }}
       - name: Inspect image
         run: |
           docker buildx imagetools inspect ${{ env.OCI_URL }}/ocm-cli:${{ env.VERSION }}
