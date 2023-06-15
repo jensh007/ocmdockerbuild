@@ -38,10 +38,10 @@ jobs:
           push: true
           load: false
           platforms: linux/amd64
-          tags: ${{ env.OCI_URL }}/ocm-cli:${{ env.VERSION }}-linux-arm64
+          tags: ${{ env.OCI_URL }}/ocm-cli:${{ env.VERSION }}-linux-amd64
           build-args: |
             OCM_VERSION=${{ env.VERSION }}
-            OCM_PLATFORM=Linux_arm64
+            OCM_PLATFORM=Linux_x86_64
       - name: Build arm64
         id: build_arm64
         uses: docker/build-push-action@v3
