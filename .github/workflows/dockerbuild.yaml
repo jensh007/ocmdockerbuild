@@ -46,6 +46,12 @@ jobs:
           build-args: |
             OCM_VERSION=${{ env.VERSION }}
             OCM_PLATFORM=Linux_arm64
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Create multi-list and push
         run: |
           docker buildx imagetools create ocm-cli:${{ env.VERSION }}-linux-arm64 ocm-cli:${{ env.VERSION }}-linux-arm64 -t ghcr.io/jensh007/ocm-cli:${{ env.VERSION }}
