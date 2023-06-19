@@ -27,14 +27,15 @@ jobs:
     - name: Check Alpine labels
       run: |
         ALPINE_LATEST_VER=`curl -s https://registry.hub.docker.com/v2/repositories/library/alpine/tags | jq '.results[].name' | xargs -n1 | sort -r | xargs | cut -d " " -f2- | awk '{print $1}'`
+        echo "Buildig OCM image with ${ALPINE_LATEST_VER}"
         echo "ALPINE_LATEST_VER=$ALPINE_LATEST_VER" >> $GITHUB_ENV
         echo "Buildig OCM image with ${{ env.ALPINE_LATEST_VER }}"
     - name: Build amd64
       id: build_amd64
       uses: docker/build-push-action@v3
       with:
-        push: true
-        load: false
+        push: false
+        load: true
         platforms: linux/amd64
         tags: ${{ env.OCI_URL }}/ocm-cli:${{ env.RELEASE_VERSION }}-linux-amd64
         build-args: |
