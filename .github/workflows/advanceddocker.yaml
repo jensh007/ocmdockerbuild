@@ -4,11 +4,40 @@ run-name: Build the OCM CLI
 on:
   workflow_dispatch:
 env:
-  FOO: "bar"
+  RELEASE_VERSION: "v0.3.0-rc.2"
+  RELEASE_VERSION2: "0.3.0-rc.2"
+  OCI_URL: ghcr.io/jensh007
 jobs:
   docker-test:
     runs-on: ubuntu-latest
     steps:
-    - name: Create multi-platform image
+    - name: Check out the repo
+      uses: actions/checkout@v3
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+    - name: Set up Docker Context for Buildx
+      id: buildx-context
       run: |
-        jq --help
+        docker context create builders
+    - name: Set up Docker Buildx
+      timeout-minutes: 10
+      uses: docker/setup-buildx-action@v2
+      with:
+        version: latest
+    - name: Check Alpine labels
+      run: |
+        ALPINE_LATEST_VER=`curl -s https://registry.hub.docker.com/v2/repositories/library/alpine/tags | jq '.results[].name' | xargs -n1 | sort -r | xargs | cut -d " " -f2- | awk '{print $1}'`
+        echo "ALPINE_LATEST_VER=$ALPINE_LATEST_VER" >> $GITHUB_ENV
+        echo "Buildig OCM image with ${{ env.ALPINE_LATEST_VER }}"
+    - name: Build amd64
+      id: build_amd64
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        load: false
+        platforms: linux/amd64
+        tags: ${{ env.OCI_URL }}/ocm-cli:v0.2.0--linux-amd64
+        build-args: |
+          OCM_VERSION=${{ env.RELEASE_VERSION2 }}
+          OCM_PLATFORM=linux-amd64
+          ALPINE_VERSION=${{ env.ALPINE_LATEST_VER }}
