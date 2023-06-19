@@ -1,4 +1,4 @@
-name: OCM Build Test
+name: Docker Test
 # trigger manually
 run-name: Build the OCM CLI
 on:
