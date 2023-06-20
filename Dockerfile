@@ -17,4 +17,4 @@ ARG OCM_VERSION
 ARG OCM_PLATFORM
 WORKDIR /root/
 COPY --from=0 /tmp/ocm /usr/bin/ocm
-LABEL org.opencontainers.image.description Open Component Model Client based on ${ALPINE_VERSION}
+LABEL org.opencontainers.image.description Open Component Model Client ${OCM_VERSION} based on Alpine ${ALPINE_VERSION}
