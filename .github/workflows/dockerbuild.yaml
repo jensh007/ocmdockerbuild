@@ -47,8 +47,9 @@ jobs:
           platforms: linux/amd64
           tags: ${{ env.OCI_URL }}/ocm-cli:${{ env.VERSION }}-linux-amd64
           build-args: |
-            OCM_VERSION=${{ env.VERSION }}
-            OCM_PLATFORM=Linux_x86_64
+            OCM_VERSION=${{ env.RELEASE_VERSION2 }}
+            OCM_PLATFORM=linux-amd64
+            ALPINE_VERSION=${{ env.ALPINE_LATEST_VER }}
       - name: Build arm64
         id: build_arm64
         uses: docker/build-push-action@v3
@@ -58,8 +59,9 @@ jobs:
           platforms: linux/arm64
           tags: ${{ env.OCI_URL }}/ocm-cli:${{ env.VERSION }}-linux-arm64
           build-args: |
-            OCM_VERSION=${{ env.VERSION }}
-            OCM_PLATFORM=Linux_arm64
+            OCM_VERSION=${{ env.RELEASE_VERSION2 }}
+            OCM_PLATFORM=linux-amd64
+            ALPINE_VERSION=${{ env.ALPINE_LATEST_VER }}
       - name: Create multi-platform image
         run: |
           docker buildx imagetools create ${{ env.OCI_URL }}/ocm-cli:${{ env.VERSION }}-linux-amd64 ${{ env.OCI_URL }}/ocm-cli:${{ env.VERSION }}-linux-arm64 -t ${{ env.OCI_URL }}/ocm-cli:${{ env.VERSION }}
