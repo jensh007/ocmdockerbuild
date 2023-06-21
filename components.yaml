@@ -1,5 +1,5 @@
 components:
-- name: open-component-model/ocmcli-image
+- name: ocm.software/ocmcli-image
   version: ${VERSION}
   provider:
     name: open-component-model
