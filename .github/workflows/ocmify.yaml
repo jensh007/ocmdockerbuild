@@ -8,6 +8,7 @@ env:
   RELEASE_VERSION2: "0.3.0-rc.2"
   COMP_NAME: ocm.software/ocmcli-image
   PROVIDER: ocm.software
+  CD_REPO: ghcr.io/jensh007/ocm
 jobs:
   build-and-create-ocm:
     runs-on: ubuntu-latest
@@ -26,6 +27,11 @@ jobs:
           component:  ${{ env.COMP_NAME}}
           var_values: |
             VERSION: ${{ env.RELEASE_VERSION2}}
+      - name: push CTF
+        uses: open-component-model/ocm-action@main
+        with:
+          action: push_ctf
+          comprepo_url: ${{ env.CD_REPO}}
       - name: Upload transport archive
         uses: actions/upload-artifact@v3
         with:
