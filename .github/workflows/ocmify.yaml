@@ -1,0 +1,31 @@
+name: ocmify
+# trigger manually
+run-name: Create OCM component
+on:
+  workflow_dispatch: ~
+env:
+  RELEASE_VERSION: "v0.3.0-rc.2"
+  RELEASE_VERSION2: "0.3.0-rc.2"
+  COMP_NAME: ocm.software/ocm-cli
+  PROVIDER: ocm.software
+jobs:
+  build-and-create-ocm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      - name: setup OCM
+        uses: open-component-model/ocm-setup-action@main
+      - name: create OCM component version
+        uses: open-component-model/ocm-action@main
+        with:
+          action: create_component
+          components: components.yaml
+          var_values: |
+            VERSION: ${{ env.RELEASE_VERSION2}}
+      - name: Upload transport archive
+        uses: actions/upload-artifact@v3
+        with:
+          name: ocm-ctf.zip
+          path: |
+            gen/ctf

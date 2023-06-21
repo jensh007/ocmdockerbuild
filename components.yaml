@@ -1,0 +1,12 @@
+components:
+- name: open-component-model/ocmcli-image
+  version: ${VERSION}
+  provider:
+    name: open-component-model
+  resources:
+  - name: ocm-image
+    type: ociImage
+    version: ${VERSION}
+    access:
+      type: ociArtifact
+      imageReference: ghcr.io/open-component-model/controller:v${VERSION}
