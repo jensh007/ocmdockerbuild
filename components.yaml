@@ -2,7 +2,7 @@ components:
 - name: ocm.software/ocmcli-image
   version: ${VERSION}
   provider:
-    name: open-component-model
+    name: ocm.software
   sources:
   - name: source
     type: filesystem

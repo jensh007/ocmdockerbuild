@@ -7,7 +7,7 @@ env:
   RELEASE_VERSION: "v0.3.0-rc.2"
   RELEASE_VERSION2: "0.3.0-rc.2"
   # COMP_NAME: ocm.software/ocmcli-image
-  PROVIDER: ocm.software
+  # PROVIDER: ocm.software
   CD_REPO: ghcr.io/jensh007/ocm
 jobs:
   build-and-create-ocm:
