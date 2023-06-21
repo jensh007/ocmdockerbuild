@@ -24,6 +24,7 @@ jobs:
           directory: .
           var_values: |
             VERSION: ${{ env.RELEASE_VERSION2}}
+            NAME: ${{ env.COMP_NAME}}
       - name: Upload transport archive
         uses: actions/upload-artifact@v3
         with:
