@@ -4,7 +4,7 @@ components:
   provider:
     name: open-component-model
   sources:
-    name: source
+  - name: source
     type: filesystem
     version: ${VERSION}
     access:
