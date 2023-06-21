@@ -32,10 +32,11 @@ jobs:
             REPO_URL: ${{ github.server_url }}/${{ github.repository }}
             COMMIT: ${{ github.sha }}
       - name: push CTF
-        uses: open-component-model/ocm-action@main
+        uses: open-component-model/ocm-action@fix1
         with:
           action: push_ctf
           comprepo_url: ${{ env.CD_REPO}}
+          force_push: true
           comprepo_password: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload transport archive
         uses: actions/upload-artifact@v3
