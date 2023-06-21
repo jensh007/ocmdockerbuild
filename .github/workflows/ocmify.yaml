@@ -31,4 +31,4 @@ jobs:
         with:
           name: ocm-ctf.zip
           path: |
-            gen/ctf
+            gen/ocm/ctf
