@@ -36,7 +36,6 @@ jobs:
         with:
           action: push_ctf
           comprepo_url: ${{ env.CD_REPO}}
-          force_push: true
           comprepo_password: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload transport archive
         uses: actions/upload-artifact@v3
