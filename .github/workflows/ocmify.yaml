@@ -6,7 +6,7 @@ on:
 env:
   RELEASE_VERSION: "v0.3.0-rc.2"
   RELEASE_VERSION2: "0.3.0-rc.2"
-#  COMP_NAME: ocm.software/ocmcli-image
+  COMP_NAME: ocm.software/ocmcli-image-foo
   PROVIDER: ocm.software
   CD_REPO: ghcr.io/jensh007/ocm
 jobs:
@@ -26,7 +26,7 @@ jobs:
           components: components.yaml
           directory: .
           version: ${{ env.RELEASE_VERSION2}}
-#          component:  ${{ env.COMP_NAME}}
+          component:  ${{ env.COMP_NAME}}
           var_values: |
             VERSION: ${{ env.RELEASE_VERSION2}}
             REPO_URL: ${{ github.server_url }}/${{ github.repository }}
@@ -36,6 +36,7 @@ jobs:
         with:
           action: push_ctf
           comprepo_url: ${{ env.CD_REPO}}
+          force_push: true
           comprepo_password: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload transport archive
         uses: actions/upload-artifact@v3
