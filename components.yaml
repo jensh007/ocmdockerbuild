@@ -3,6 +3,14 @@ components:
   version: ${VERSION}
   provider:
     name: open-component-model
+  sources:
+    name: source
+    type: filesystem
+    version: ${VERSION}
+    access:
+      type: gitHub
+      repoUrl: ${REPO_URL}
+      commit: ${COMMIT}
   resources:
   - name: ocm-image
     type: ociImage

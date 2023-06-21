@@ -29,6 +29,8 @@ jobs:
           component:  ${{ env.COMP_NAME}}
           var_values: |
             VERSION: ${{ env.RELEASE_VERSION2}}
+            REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+            COMMIT: ${{ github.sha }}
       - name: push CTF
         uses: open-component-model/ocm-action@main
         with:
