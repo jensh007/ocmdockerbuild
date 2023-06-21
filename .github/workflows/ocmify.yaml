@@ -23,7 +23,7 @@ jobs:
           action: add_component
           components: components.yaml
           directory: .
-          # version: ${{ env.RELEASE_VERSION2}}
+          version: 0.1.0-dummy
           var_values: |
             VERSION: ${{ env.RELEASE_VERSION2}}
             REPO_URL: ${{ github.server_url }}/${{ github.repository }}
