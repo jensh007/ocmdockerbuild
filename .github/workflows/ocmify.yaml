@@ -22,6 +22,7 @@ jobs:
           action: create_component
           components: components.yaml
           provider: ${{ env.PROVIDER }}
+          version: ${{ env.RELEASE_VERSION2 }}
           var_values: |
             VERSION: ${{ env.RELEASE_VERSION2}}
       - name: Upload transport archive
