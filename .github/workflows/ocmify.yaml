@@ -6,7 +6,7 @@ on:
 env:
   RELEASE_VERSION: "v0.3.0-rc.2"
   RELEASE_VERSION2: "0.3.0-rc.2"
-  COMP_NAME: ocm.software/ocm-cli
+  COMP_NAME: ocm.software/ocmcli-image
   PROVIDER: ocm.software
 jobs:
   build-and-create-ocm:
@@ -22,9 +22,10 @@ jobs:
           action: add_component
           components: components.yaml
           directory: .
+          version: ${{ env.RELEASE_VERSION2}}
+          component:  ${{ env.COMP_NAME}}
           var_values: |
             VERSION: ${{ env.RELEASE_VERSION2}}
-            NAME: ${{ env.COMP_NAME}}
       - name: Upload transport archive
         uses: actions/upload-artifact@v3
         with:
