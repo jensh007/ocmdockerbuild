@@ -1,0 +1,26 @@
+name: Variable Test
+run-name: Build the OCM CLI
+on:
+  workflow_dispatch:
+env:
+  RELEASE_VERSION: "v0.0.0-rc.0"
+  RELEASE_VERSION2: "0.0.0-rc.0"
+jobs:
+  job-1:
+    runs-on: ubuntu-latest
+    name: job1
+    steps:
+    - name: Set Base Version
+      run: |
+        echo "RELEASE_VERSION is: ${{ env.RELEASE_VERSION }}"
+        RELEASE_VERSION="v0.3.0-rc.2"
+        echo "RELEASE_VERSION=$v" >> $GITHUB_ENV
+  job-2:
+    runs-on: ubuntu-latest
+    name: job2
+    needs:
+    - job-1
+    steps:
+    - name: Set Base Version
+      run: |
+        echo "RELEASE_VERSION is: ${{ env.RELEASE_VERSION }}"
