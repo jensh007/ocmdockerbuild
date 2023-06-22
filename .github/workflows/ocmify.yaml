@@ -7,6 +7,8 @@ env:
   RELEASE_VERSION: "v0.3.0-rc.2"
   RELEASE_VERSION2: "0.3.0-rc.2"
   CD_REPO: ghcr.io/jensh007/ocm
+  OCI_URL: ghcr.io/jensh007
+  IMAGE_NAME: ocm-cli
 jobs:
   build-and-create-ocm:
     runs-on: ubuntu-latest
@@ -28,6 +30,8 @@ jobs:
             VERSION: ${{ env.RELEASE_VERSION2}}
             REPO_URL: ${{ github.server_url }}/${{ github.repository }}
             COMMIT: ${{ github.sha }}
+            IMAGE_PREFIX: ${{ env.OCI_URL }}
+            IMAGE_NAME: ${{ env.IMAGE_NAME }}
       - name: push CTF
         uses: open-component-model/ocm-action@fix1
         with:
